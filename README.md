@@ -9,6 +9,8 @@ worldtime provides methods for manipulating international dates and converting d
 http://www.unicode.org/cldr/dtd/1.0/ldml-spec.htm
 json version of the locale data markup language
 
+XML files [from the Zend PHP framework][3] are used to create a default collection locale-specific JSON files. These files are included with world time.
+
 what's good about this script:
 
   - format and unformat dates using unicode [forms][2]
@@ -17,6 +19,7 @@ what's good about this script:
 [0]: http://www.bumblehead.com                            "bumblehead"
 [1]: http://github.com/iambumblehead/worldTime            "worldTime"
 [2]: http://cldr.unicode.org/translation/date-time        "unicode"
+[3]:https://github.com/magento/magento2/tree/master/lib/Zend/Locale/Data
 
 ---------------------------------------------------------
 #### <a id="install"></a>INSTALL:
