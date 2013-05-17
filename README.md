@@ -2,44 +2,45 @@ worldtime
 =========
 **(c)[Bumblehead][0], 2013** [MIT-license](#license)  
 
-### OVERVIEW:
+### Overview:
 
-worldtime provides methods for manipulating international dates and converting dates to and from unicode format.
+worldtime provides methods for manipulating international dates, converting dates to and from unicode format.
 
-http://www.unicode.org/cldr/dtd/1.0/ldml-spec.htm
-json version of the locale data markup language
+worldtime uses the [official Unicode ldml-JSON files][2] for formatting and parsing international dates and times. Use [json-locale][3] to get these files and optimise them. It is a **good** thing that this script uses official unicode files, see [json-locale][3] for more information.
 
-XML files [from the Zend PHP framework][3] are used to create a default collection locale-specific JSON files. These files are included with world time.
+worldtime extends [simpletime][4]. no libraries are required. just simpletime, worldtime and unicode JSON files.
 
 what's good about this script:
 
-  - format and unformat dates using unicode [forms][2]
+  - format and unformat internation time using unicode [forms][5]
   - create and use `YMDArr` objects to simplify time manipulation
+  - small. 160 loc, casual, un-minified source
 
 [0]: http://www.bumblehead.com                            "bumblehead"
-[1]: http://github.com/iambumblehead/worldTime            "worldTime"
-[2]: http://cldr.unicode.org/translation/date-time        "unicode"
-[3]:https://github.com/magento/magento2/tree/master/lib/Zend/Locale/Data
+[1]: http://github.com/iambumblehead/worldTime             "worldTime"
+[3]: https://github.com/iambumblehead/json-locale        "json-locale"
+[4]: https://github.com/iambumblehead/simpletime         "simple-time"
+[5]: http://www.unicode.org/repos/cldr-aux/json/22.1/   "unicode JSON"
 
 ---------------------------------------------------------
-#### <a id="install"></a>INSTALL:
+#### <a id="install"></a>Install:
 
-simpleTime may be downloaded directly or installed through `npm`.
+worldtime may be downloaded directly or installed through `npm`.
 
  * **npm**   
 
  ```bash
- $ npm install simpleTime
+ $ npm install worldtime
  ```
 
  * **Direct Download**
  
  ```bash  
- $ git clone https://github.com/iambumblehead/simpleTime.git
+ $ git clone https://github.com/iambumblehead/worldtime.git
  ```
 
 ---------------------------------------------------------
-#### <a id="test"></a>TEST:
+#### <a id="test"></a>Test:
 
  to run tests, use `npm test` from a shell.
 

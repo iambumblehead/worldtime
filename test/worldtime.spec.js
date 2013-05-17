@@ -1,18 +1,14 @@
 var WorldTime = require('../worldtime');
 
+var en_USObj = require('./locale/en_US.json');
+var es_ESObj = require('./locale/es_ES.json');
+var es_CLObj = require('./locale/es_CL.json');
+
 describe("WorldTime.isTest", function () {
+  it("should return a world time object", function () {
+    var worldTimeObj = WorldTime(en_USObj, 'en_US');
 
-  it("should return true", function () {
-    expect(WorldTime('EN-us').isTest()).toBe(true);
+    expect( typeof worldTimeObj === 'object' ).toBe( true );
   });
-
-  it("should load a locale map", function (done) {
-    WorldTime('EN-us').localeMethods.loadMap('../locale/en-US/base.json', function (err, res) {
-      expect( err ).toBe( null );      
-      done();
-    });
-
-  });
-
 
 });
