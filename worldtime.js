@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.05.17-00:23:03 (last modified)  
+// Timestamp: 2013.05.17-00:31:00 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -11,6 +11,7 @@ var WorldTime =
   var worldTime = Object.create(SimpleTime);
 
   worldTime.langCache = {};
+  worldTime.localeObj = {};
 
   worldTime.set = function (langObj, langId) {
     var that = this;
@@ -146,7 +147,8 @@ var WorldTime =
     var fn = function (langObj, langId) {
       var that = Object.create(worldTime);
       worldTime.set(langObj, langId);
-      that.langObj = langObj;
+      that.langCache[langId] = langObj;
+      that.localeObj = langObj;
       return that;
     };
 
