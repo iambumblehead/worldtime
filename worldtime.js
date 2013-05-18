@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.05.17-00:31:00 (last modified)  
+// Timestamp: 2013.05.17-18:02:33 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -19,12 +19,12 @@ var WorldTime =
     return that.worldTime;
   };
 
-  worldTime.getCalendarObj = function () {
-    return this.localeObj.dates.calendars.gregorian;
+  worldTime.getCalendarObj = function (calType) {
+    return this.localeObj.dates.calendars[calType];
   },
 
   worldTime.getCalendarUnit = function (unit) {
-    var calendarObj = this.getCalendarObj();
+    var calendarObj = this.getCalendarObj('gregorian');
     return calendarObj[unit];
   };
 
@@ -51,7 +51,7 @@ var WorldTime =
   };
   // day, wide
   worldTime.getNumericDayNameWide = function(dayNum) {
-    return this.getNumericDayNameFOrmatObj('wide')[dayNum];
+    return this.getNumericDayNameFormatObj('wide')[dayNum];
   };  
 
   // get month 'name' from date
@@ -66,22 +66,26 @@ var WorldTime =
     return this.getNumericMonthNameWide(monthNum);  
   };
 
-  worldTime.getDateFormat = function () {
-    return this.getCalendarObj().dates.dateFormat;
+  // available formats are `full`, `long`, `medium` and `short`
+  // if no format is specified, locale provided default is used
+  worldTime.getDateFormat = function (defaultFormat) {
+    var formats = this.getCalendarObj('gregorian').dateFormats;
+    defaultFormat = defaultFormat || formats['default'];
+    if (defaultFormat) {
+      return formats[defaultFormat].dateFormat.pattern;
+    }
   };
 
-  // type is `gregorian`
-  worldTime.getDateFormatsObj = function (type) {
-    return this.getCalendarObj().dates.calendars[type];
+  // available formats are `full`, `long`, `medium` and `short`
+  // if no format is specified, locale provided default is used
+  worldTime.getTimeFormat = function (defaultFormat) {
+    var formats = this.getCalendarObj('gregorian').timeFormats;
+    defaultFormat = defaultFormat || formats['default'];
+    if (defaultFormat) {
+      return formats[defaultFormat].timeFormat.pattern;
+    }
   };
 
-  worldTime.getDateFormatMedium = function () {
-    return this.getDateFormatsObj('gregorian').dateFormats.length.medium;
-  };
-  worldTime.getDateFormatShort = function () {
-    // `short` is reserved keyworld -breaks IE
-    return this.getDateFormatsObj('gregorian').dateFormats.length['short'];
-  };
 
   // example US dateFormat: 'mm/dd/yyyy'
   worldTime.getFormattedDateShort = function (date) {
@@ -96,7 +100,6 @@ var WorldTime =
 
     return that.applyFormatDate(date, dateFormats['medium']);
   };
-
   worldTime.getFormattedTimeShort = function (date) {
     var that = this,
         timeFormats = that.getDateFormatsObj('gregorian').timeFomrats.length;
