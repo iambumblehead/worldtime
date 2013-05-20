@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.05.17-18:02:33 (last modified)  
+// Timestamp: 2013.05.18-16:26:15 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -19,10 +19,38 @@ var WorldTime =
     return that.worldTime;
   };
 
+  // the following calendars are supported
+  //    "buddhist", 
+  //    "chinese", 
+  //    "coptic", 
+  //    "dangi",
+  //    "ethiopic", 
+  //    "ethiopicAmeteAlem",
+  //    "gregorian",
+  //    "hebrew", 
+  //    "indian",
+  //    "islamic", 
+  //    "islamicCivil", 
+  //    "japanese",
+  //    "persian", 
+  //    "roc"
   worldTime.getCalendarObj = function (calType) {
-    return this.localeObj.dates.calendars[calType];
-  },
+    var formats = this.localeObj.dates.calendars;
+    calType = calType || formats['default'];
+    if (calType) {
+      return this.localeObj.dates.calendars[calType];
+    }
+  };
 
+  // the following calendar units are supported (for each calendar)
+  //    "months",
+  //    "days",
+  //    "quarters",
+  //    "eras",
+  //    "dateFormats",
+  //    "timeFormats",
+  //    "dateTimeFormats",
+  //    "fields"      
   worldTime.getCalendarUnit = function (unit) {
     var calendarObj = this.getCalendarObj('gregorian');
     return calendarObj[unit];
@@ -86,66 +114,50 @@ var WorldTime =
     }
   };
 
-
-  // example US dateFormat: 'mm/dd/yyyy'
-  worldTime.getFormattedDateShort = function (date) {
+  // available formats are `full`, `long`, `medium` and `short`
+  // if !format, locale provided default is used
+  worldTime.getFormattedDate = function (date, format) {
     var that = this,
-        dateFormats = that.getDateFormatsObj('gregorian').dateFormats.length;
+        dateFormat = that.getDateFormat(format);
 
-    return that.applyFormatDate(date, dateFormats['short']);
+    return that.applyFormatDate(date, dateFormat);
   };
-  worldTime.getFormattedDateMedium = function (date) {
+
+  // available formats are `full`, `long`, `medium` and `short`
+  // if !format, locale provided default is used
+  worldTime.getFormattedTime = function (date, format) {
     var that = this,
-        dateFormats = that.getDateFormatsObj('gregorian').dateFormats.length;
+        dateFormat = that.getTimeFormat(format);
 
-    return that.applyFormatDate(date, dateFormats['medium']);
+    return that.applyFormatDate(date, dateFormat);  
   };
-  worldTime.getFormattedTimeShort = function (date) {
+
+  // available formats are `full`, `long`, `medium` and `short`
+  // if !format, locale provided default is used
+  worldTime.extractFormattedDate = function (date, format) {
     var that = this,
-        timeFormats = that.getDateFormatsObj('gregorian').timeFomrats.length;
+        dateFormat = that.getDateFormat(format);
 
-    return that.applyFormatDate(date || new Date(), timeFormats['short']);
+    return that.extractDateFormatted(date, dateFormat);
   };
-    
-  worldTime.getBaseMonthsArr = function (spec) {
-    var type = (spec && spec.type) ? spec.type : 'abbreviated',
-        gregorian = this.getDateFormatsObj('gregorian'),
-        m = gregorian.months.format[type];
 
+
+  // get abbreviated months array, useful for calendar applications
+  worldTime.getBaseMonthsArr = function (type) {
+    var m = this.getNumericMonthNameFormatObj(type);
     return [m['1'], m['2'], m['3'], m['4'],
             m['5'], m['6'], m['7'], m['8'],
             m['9'], m['10'], m['11'], m['12']];
   };
-  
-  worldTime.getBaseDaysArr = function (spec) {
-    var type = (spec && spec.type) ? spec.type : 'abbreviated',
-        gregorian = this.getDateFormatsObj('gregorian'),
-        d = gregorian.days.format[type];
 
+  // get abbreviated days array, useful for calendar applications  
+  worldTime.getBaseDaysArr = function (type) {
+    var d = this.getNumericDayNameFormatObj(type);
     return [d['sun'], d['mon'], d['tue'], d['wed'], 
             d['thu'], d['fri'], d['sat']];
   };
 
-  // redefine simple time methods to return locale specific data
-  worldTime.localeMethods = {
-    getDateSymbolsMonthAbbrev : function () {    
-      return worldTime.getNumericMonthNameFormatObj('abbreviated');
-    },
-    getDateSymbolsMonthWide : function () {
-      return worldTime.getNumericMonthNameFormatObj('wide');
-    },
-    getDateSymbolsMonthNarrow : function () {
-      return worldTime.getNumericMonthNameFormatObj('narrow');
-    },
 
-    getDateSymbolsDayAbbrev : function () {
-      return worldTime.getNumericDayNameFormatObj('abbrev');
-    },
-    getDateSymbolsDayWide : function () {
-      return worldTime.getNumericDayNameFormatObj('wide');
-    }
-  };
-  
   return (function () {
     var fn = function (langObj, langId) {
       var that = Object.create(worldTime);
