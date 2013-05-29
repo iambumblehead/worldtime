@@ -129,25 +129,25 @@ worldtime may be downloaded directly or installed through `npm`.
       "medium",  
       "short"
 
-  > ```javascript
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
-    console.log(result);
-    // {
-    //   "1": "ene",
-    //   "2": "feb",
-    //   "3": "mar",
-    //   "4": "abr",
-    //   "5": "may",
-    //   "6": "jun",
-    //   "7": "jul",
-    //   "8": "ago",
-    //   "9": "sep",
-    //   "10": "oct",
-    //   "11": "nov",
-    //   "12": "dic"
-    // }
-    ```   
+ > ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
+   console.log(result);
+   // {
+   //   "1": "ene",
+   //   "2": "feb",
+   //   "3": "mar",
+   //   "4": "abr",
+   //   "5": "may",
+   //   "6": "jun",
+   //   "7": "jul",
+   //   "8": "ago",
+   //   "9": "sep",
+   //   "10": "oct",
+   //   "11": "nov",
+   //   "12": "dic"
+   // }
+   ```   
    
 
  - **getNumericMonthNameAbbrev ( )**  
