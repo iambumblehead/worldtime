@@ -129,7 +129,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "medium",  
       "short"
 
- > ```javascript
+   ```javascript
    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
    console.log(result);
@@ -147,9 +147,6 @@ worldtime may be downloaded directly or installed through `npm`.
    //   "11": "nov",
    //   "12": "dic"
    // }
-   ```
-
- > ```javascript
    ```
 
  - **getNumericMonthNameAbbrev ( )**  
