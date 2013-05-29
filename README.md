@@ -116,22 +116,21 @@ worldtime may be downloaded directly or installed through `npm`.
       "fields"      
       
 
- - **getNumericMonthNameFormatObj ( _monthType_ )**  
+ - **getMonthNameFormatObj ( _monthType_ )**  
  
-   returns an array of month names for the given month type
+   returns an object of month names for the given month type
 
    by default, months are provided by the `gregorian` calendar object
  
    the following month types are defined by the unicode files and are valid _monthTypes_:
    
-      "full",  
-      "long",  
-      "medium",  
-      "short"
-
+      "abbreviated",  
+      "narrow",  
+      "wide"  
+      
    ```javascript
    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
+   var result = worldTimeObj.getMonthNameFormatObj('abbreviated');
    console.log(result);
    // {
    //   "1": "ene",
@@ -149,54 +148,205 @@ worldtime may be downloaded directly or installed through `npm`.
    // }
    ```
 
- - **getNumericMonthNameAbbrev ( )**  
+ - **getNumericMonthNameAbbrev ( _monthNum_ )**  
  
-   returns an array of month names for the `abbreviated` month type     
+   returns a month name of the `abbreviated` month type for the given _monthNum_    
 
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getNumericMonthNameAbbrev('1');
+   console.log(result);
+   // ene
+   ```
 
- - **getNumericMonthNameAbbrev ( )**  
+ - **getNumericMonthNameWide ( _monthNum_ )**  
  
-   returns an array of month names for the `wide` month type     
+   returns a month name of the `wide` month type for the given _monthNum_
 
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getNumericMonthNameWide('1');
+   console.log(result);
+   // enero
+   ```
 
- - **getNumericDayNameFormatObj ( _dayType_ )**  
+ - **getDayNameFormatObj ( _monthType_ )**  
  
-   returns an array of day names for the given day type
+   returns an object of day names for the given day type
 
    by default, months are provided by the `gregorian` calendar object
  
    the following day types are defined by the unicode files:
+
+      "abbreviated",  
+      "narrow",  
+      "wide"   
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getDayNameFormatObj('abbreviated');
+   console.log(result);
+   // {
+   //   "sun": "dom",
+   //   "mon": "lun",
+   //   "tue": "mar",
+   //   "wed": "mié",
+   //   "thu": "jue",
+   //   "fri": "vie",
+   //   "sat": "sáb"
+   // }
+   ```
+
+ - **getStrDayNameAbbrev ( _dayStr_ )**  
+ 
+   returns a day name of the `abbreviated` day type for the given _dayStr_  
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getStrDayNameAbbrev('mon');
+   console.log(result);
+   // lun
+   ```
+
+ - **getStrDayNameWide ( _dayStr_ )**  
+ 
+   returns a day name of the `wide` day type for the given _dayStr_     
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getStrDayNameWide('mon');
+   console.log(result);
+   // lunes
+   ```
+
+ - **getDateMonthNameAbbrev ( _dayStr_ )**  
+ 
+   returns a day name of the `wide` day type for the given _dayStr_     
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+   var date = new Date(1365222221485);  
+   var result = worldTimeObj.getDateMonthNameAbbrev(date);
+   console.log(result);
+   // abr
+   ```   
    
-      "full",  
-      "long",  
-      "medium",  
-      "short"
-
-   > ```javascript
-     var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-     var result = worldTimeObj.getNumericDayNameFormatObj('abbreviated');
-     console.log(result);
-     // {
-     //   "sun": "dom",
-     //   "mon": "lun",
-     //   "tue": "mar",
-     //   "wed": "mié",
-     //   "thu": "jue",
-     //   "fri": "vie",
-     //   "sat": "sáb"
-     // }
-     ```
-
- - **getNumericdayNameAbbrev ( )**  
+ - **getDateMonthNameWide ( _dayStr_ )**  
  
-   returns an array of day names for the `abbreviated` day type     
+   returns a day name of the `wide` day type for the given _dayStr_     
 
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+   var date = new Date(1365222221485);  
+   var result = worldTimeObj.getDateMonthNameWide(date);
+   console.log(result);
+   // abril
+   ```   
 
- - **getNumericdayNameAbbrev ( )**  
+ - **getDateFormat ( _formatType_ )**  
  
-   returns an array of day names for the `wide` day type     
+   returns a date format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getDateFormat('short');
+   console.log(result);
+   // dd-MM-yy
+   ```    
 
+ - **getTimeFormat ( _formatType_ )**  
+ 
+   returns a time format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getTimeFormat('short');
+   console.log(result);
+   // H:mm
+   ```    
+
+ - **getFormattedDate ( _dateObj_ , _formatType_ )**  
+ 
+   returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+   var date = new Date(1365222221485);     
+   var result = worldTimeObj.getFormattedDate(date, 'short');
+   console.log(result);
+   // 05-04-13
+   ```    
+
+ - **getFormattedTime ( _dateObj_ , _formatType_ )**  
+ 
+   returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+   var date = new Date(1365222221485);     
+   var result = worldTimeObj.getFormattedTime(date, 'short');
+   console.log(result);
+   // 21:23
+   ```    
+
+ - **extractFormattedDate ( _dateStr_ , _formatType_ )**  
+ 
+   returns a date of the given formattted dateStr and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+   var date = '05-04-13';
+   var result = worldTimeObj.extractFormattedDate(date, 'short');
+   console.log(result);
+   // Fri Apr 05 13 23:13:55 GMT-0700 (PDT)
+   ```    
+   
+ - **getBaseMonthsArr ( _formatType_ )**  
+ 
+   returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
+   
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getBaseMonthsArr('abbreviated');
+   console.log(result);
+   // [
+   //   'feb',
+   //   'mar',
+   //   'abr',
+   //   'may',
+   //   'jun',
+   //   'jul',
+   //   'ago',
+   //   'sep',
+   //   'oct',
+   //   'nov',
+   //   'dic'
+   // ]
+   ```       
+   
+ - **getBaseDaysArr ( _formatType_ )**  
+ 
+   returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
+   
+   ```javascript
+   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+   var result = worldTimeObj.getBaseDaysArr('abbreviated');
+   console.log(result);
+   // [
+   //   'dom',
+   //   'lun',
+   //   'mar',
+   //   'mié',
+   //   'jue',
+   //   'vie',
+   //   'sáb'
+   // ]
+   ```          
 
 ---------------------------------------------------------
 

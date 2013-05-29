@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.05.18-16:26:15 (last modified)  
+// Timestamp: 2013.05.28-22:36:15 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -57,29 +57,29 @@ var WorldTime =
   };
 
   // months
-  worldTime.getNumericMonthNameFormatObj = function(type) {
+  worldTime.getMonthNameFormatObj = function(type) {
     return this.getCalendarUnit('months').format[type];
   };
   // month, abbreviated
   worldTime.getNumericMonthNameAbbrev = function(monthNum) {
-    return this.getNumericMonthNameFormatObj('abbreviated')[monthNum];  
+    return this.getMonthNameFormatObj('abbreviated')[monthNum];  
   };
   // month, wide
   worldTime.getNumericMonthNameWide = function(monthNum) {
-    return this.getNumericMonthNameFormatObj('wide')[monthNum];
+    return this.getMonthNameFormatObj('wide')[monthNum];
   };  
 
   // days
-  worldTime.getNumericDayNameFormatObj = function(type) {
+  worldTime.getDayNameFormatObj = function(type) {
     return this.getCalendarUnit('days').format[type];
   };
   // day, abbreviated
-  worldTime.getNumericDayNameAbbrev = function(dayNum) {
-    return this.getNumericDayNameFormatObj('abbreviated')[dayNum];  
+  worldTime.getStrDayNameAbbrev = function(dayNum) {
+    return this.getDayNameFormatObj('abbreviated')[dayNum];  
   };
   // day, wide
-  worldTime.getNumericDayNameWide = function(dayNum) {
-    return this.getNumericDayNameFormatObj('wide')[dayNum];
+  worldTime.getStrDayNameWide = function(dayNum) {
+    return this.getDayNameFormatObj('wide')[dayNum];
   };  
 
   // get month 'name' from date
@@ -144,7 +144,7 @@ var WorldTime =
 
   // get abbreviated months array, useful for calendar applications
   worldTime.getBaseMonthsArr = function (type) {
-    var m = this.getNumericMonthNameFormatObj(type);
+    var m = this.getMonthNameFormatObj(type);
     return [m['1'], m['2'], m['3'], m['4'],
             m['5'], m['6'], m['7'], m['8'],
             m['9'], m['10'], m['11'], m['12']];
@@ -152,7 +152,7 @@ var WorldTime =
 
   // get abbreviated days array, useful for calendar applications  
   worldTime.getBaseDaysArr = function (type) {
-    var d = this.getNumericDayNameFormatObj(type);
+    var d = this.getDayNameFormatObj(type);
     return [d['sun'], d['mon'], d['tue'], d['wed'], 
             d['thu'], d['fri'], d['sat']];
   };

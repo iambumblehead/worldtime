@@ -44,25 +44,25 @@ describe("WorldTime.getCalendarObj", function () {
 });
 
 
-describe("WorldTime.getNumericMonthNameFormatObj", function () {
+describe("WorldTime.getMonthNameFormatObj", function () {
 
   it("should return a month names, abbreviated", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
+      var result = worldTimeObj.getMonthNameFormatObj('abbreviated');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.abbreviated;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a month names, wide", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericMonthNameFormatObj('wide');
+      var result = worldTimeObj.getMonthNameFormatObj('wide');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.wide;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a month names, narrow", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericMonthNameFormatObj('narrow');
+      var result = worldTimeObj.getMonthNameFormatObj('narrow');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.narrow;
       expect( result ).toBe( resultExpected );
   });
@@ -111,25 +111,25 @@ describe("WorldTime.getNumericMonthNameWide", function () {
 
 
 
-describe("WorldTime.getNumericDayNameFormatObj", function () {
+describe("WorldTime.getDayNameFormatObj", function () {
 
   it("should return a month names, abbreviated", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericDayNameFormatObj('abbreviated');
+      var result = worldTimeObj.getDayNameFormatObj('abbreviated');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.abbreviated;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a day names, wide", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericDayNameFormatObj('wide');
+      var result = worldTimeObj.getDayNameFormatObj('wide');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.wide;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a day names, narrow", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericDayNameFormatObj('narrow');
+      var result = worldTimeObj.getDayNameFormatObj('narrow');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.narrow;
       expect( result ).toBe( resultExpected );
   });
@@ -140,7 +140,7 @@ describe("WorldTime.getNumericDayNameFormatObj", function () {
 describe("WorldTime.getNumericDayNameAbbrev", function () {
   it("en_US instance w/ parameter `tue` should return `Tue`", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericDayNameAbbrev('tue');
+      var result = worldTimeObj.getStrDayNameAbbrev('tue');
       var resultExpected = 'Tue';
 
       expect( result ).toBe( resultExpected );
@@ -148,7 +148,7 @@ describe("WorldTime.getNumericDayNameAbbrev", function () {
 
   it("es_CL instance w/ parameter `tue` should return `mar`", function () {
       var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getNumericDayNameAbbrev('tue');
+      var result = worldTimeObj.getStrDayNameAbbrev('tue');
       var resultExpected = 'mar';
 
       expect( result ).toBe( resultExpected );
@@ -159,7 +159,7 @@ describe("WorldTime.getNumericDayNameAbbrev", function () {
 describe("WorldTime.getNumericDayNameWide", function () {
   it("en_US instance w/ parameter `tue` should return `Tuesday`", function () {
       var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericDayNameWide('tue');
+      var result = worldTimeObj.getStrDayNameWide('tue');
       var resultExpected = 'Tuesday';
 
       expect( result ).toBe( resultExpected );
@@ -167,7 +167,7 @@ describe("WorldTime.getNumericDayNameWide", function () {
 
   it("es_CL instance w/ parameter `tue` should return `martes`", function () {
       var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getNumericDayNameWide('tue');
+      var result = worldTimeObj.getStrDayNameWide('tue');
       var resultExpected = 'martes';
 
       expect( result ).toBe( resultExpected );
