@@ -82,7 +82,7 @@ worldtime may be downloaded directly or installed through `npm`.
  - **getCalendarObj ( _calendarType_ )**  
    returns a `calendar` object from the unicode file.
 
-   the following calendars are defined by the unicode files:
+   the following calendars are defined by the unicode files and are valid _calendarTypes_:
        
       "buddhist",   
       "chinese",   
@@ -104,7 +104,7 @@ worldtime may be downloaded directly or installed through `npm`.
  
    returns a `calendar unit` object from the unicode file.
 
-   the following units are defined by the unicode files:
+   the following units are defined by the unicode files and are valid _unitTypes_:
 
       "months",  
       "days",  
@@ -122,32 +122,32 @@ worldtime may be downloaded directly or installed through `npm`.
 
    by default, months are provided by the `gregorian` calendar object
  
-   the following month types are defined by the unicode files:
+   the following month types are defined by the unicode files and are valid _monthTypes_:
    
       "full",  
       "long",  
       "medium",  
       "short"
 
-   > ```javascript
-     var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-     var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
-     console.log(result);
-     // {
-     //   "1": "ene",
-     //   "2": "feb",
-     //   "3": "mar",
-     //   "4": "abr",
-     //   "5": "may",
-     //   "6": "jun",
-     //   "7": "jul",
-     //   "8": "ago",
-     //   "9": "sep",
-     //   "10": "oct",
-     //   "11": "nov",
-     //   "12": "dic"
-     // }
-     ``` 
+  > ```javascript
+    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
+    var result = worldTimeObj.getNumericMonthNameFormatObj('abbreviated');
+    console.log(result);
+    // {
+    //   "1": "ene",
+    //   "2": "feb",
+    //   "3": "mar",
+    //   "4": "abr",
+    //   "5": "may",
+    //   "6": "jun",
+    //   "7": "jul",
+    //   "8": "ago",
+    //   "9": "sep",
+    //   "10": "oct",
+    //   "11": "nov",
+    //   "12": "dic"
+    // }
+    ```
 
 
  - **getNumericMonthNameAbbrev ( )**  
