@@ -4,9 +4,6 @@ worldtime
 
 ### Overview:
 
-NOTE:
-**This software is a work in progress and may be unusable at this time.**
-
 worldtime provides methods for manipulating international dates, converting dates to and from unicode format.
 
 worldtime uses the [official Unicode ldml-JSON files][2] for formatting and parsing international dates and times. Use [json-locale][3] to get these files and to optimise them.
