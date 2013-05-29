@@ -182,7 +182,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "abbreviated",  
       "narrow",  
       "wide"   
-
+   
    ```javascript
    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    var result = worldTimeObj.getDayNameFormatObj('abbreviated');
@@ -196,7 +196,7 @@ worldtime may be downloaded directly or installed through `npm`.
    //   "fri": "vie",
    //   "sat": "sáb"
    // }
-   ```
+   ```   
 
  - **getStrDayNameAbbrev ( _dayStr_ )**  
  
