@@ -171,14 +171,14 @@ worldtime may be downloaded directly or installed through `npm`.
    // enero
    ```
 
- - **getDayNameFormatObj ( _monthType_ )**  
+ - **getDayNameFormatObj ( _dayType_ )**  
  
    returns an object of day names for the given day type
 
    by default, months are provided by the `gregorian` calendar object
  
    the following day types are defined by the unicode files:
-
+   
       "abbreviated",  
       "narrow",  
       "wide"  
