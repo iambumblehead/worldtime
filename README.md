@@ -9,7 +9,7 @@ NOTE:
 
 worldtime provides methods for manipulating international dates, converting dates to and from unicode format.
 
-worldtime uses the [official Unicode ldml-JSON files][2] for formatting and parsing international dates and times. Use [json-locale][3] to get these files and optimise them.
+worldtime uses the [official Unicode ldml-JSON files][2] for formatting and parsing international dates and times. Use [json-locale][3] to get these files and to optimise them.
 
 worldtime extends [simpletime][4]. no libraries are required. just simpletime, worldtime and unicode JSON files.
 
@@ -23,6 +23,7 @@ what's good about this script:
 
 [0]: http://www.bumblehead.com                            "bumblehead"
 [1]: http://github.com/iambumblehead/worldTime             "worldTime"
+[2]: http://cldr.unicode.org/index/cldr-spec/json  "ldml-to-json spec"
 [3]: https://github.com/iambumblehead/json-locale        "json-locale"
 [4]: https://github.com/iambumblehead/simpletime         "simple-time"
 [5]: http://www.unicode.org/repos/cldr-aux/json/22.1/   "unicode JSON"
