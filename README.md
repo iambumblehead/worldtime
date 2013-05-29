@@ -149,6 +149,8 @@ worldtime may be downloaded directly or installed through `npm`.
    // }
    ```
 
+ > ```javascript
+   ```
 
  - **getNumericMonthNameAbbrev ( )**  
  
