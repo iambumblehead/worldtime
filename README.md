@@ -147,8 +147,8 @@ worldtime may be downloaded directly or installed through `npm`.
     //   "11": "nov",
     //   "12": "dic"
     // }
-    ```
-
+    ```   
+   
 
  - **getNumericMonthNameAbbrev ( )**  
  
