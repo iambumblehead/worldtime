@@ -1,14 +1,14 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.05.28-22:36:15 (last modified)  
+// Timestamp: 2013.09.15-18:59:01 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
-var SimpleTime = require('simpletime');
+var simpletime = require('simpletime');
 
-var WorldTime = 
+var worldtime = 
   ((typeof module === 'object') ? module : {}).exports = (function () {
 
-  var worldTime = Object.create(SimpleTime);
+  var worldTime = Object.create(simpletime);
 
   worldTime.langCache = {};
   worldTime.localeObj = {};
