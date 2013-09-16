@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.09.15-18:59:01 (last modified)  
+// Timestamp: 2013.09.15-20:49:26 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
