@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.09.15-20:49:26 (last modified)  
+// Timestamp: 2013.09.26-05:44:42 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -8,16 +8,9 @@ var simpletime = require('simpletime');
 var worldtime = 
   ((typeof module === 'object') ? module : {}).exports = (function () {
 
-  var worldTime = Object.create(simpletime);
+  var wtime = Object.create(simpletime);
 
-  worldTime.langCache = {};
-  worldTime.localeObj = {};
-
-  worldTime.set = function (langObj, langId) {
-    var that = this;
-    that.langCache[langId] = langObj;
-    return that.worldTime;
-  };
+  wtime.prototype = simpletime;
 
   // the following calendars are supported
   //    "buddhist", 
@@ -34,12 +27,11 @@ var worldtime =
   //    "japanese",
   //    "persian", 
   //    "roc"
-  worldTime.getCalendarObj = function (calType) {
-    var formats = this.localeObj.dates.calendars;
-    calType = calType || formats['default'];
-    if (calType) {
-      return this.localeObj.dates.calendars[calType];
-    }
+  wtime.getCalendarObj = function (localeObj, calType) {
+    var calendars = localeObj.dates.calendars,
+        type = (typeof calType === 'string') ? calType : 'default';
+
+    return calendars[calType];
   };
 
   // the following calendar units are supported (for each calendar)
@@ -51,127 +43,110 @@ var worldtime =
   //    "timeFormats",
   //    "dateTimeFormats",
   //    "fields"      
-  worldTime.getCalendarUnit = function (unit) {
-    var calendarObj = this.getCalendarObj('gregorian');
+  wtime.getCalendarUnit = function (localeObj, unit) {
+    var calendarObj = wtime.getCalendarObj(localeObj, 'gregorian');
     return calendarObj[unit];
   };
 
   // months
-  worldTime.getMonthNameFormatObj = function(type) {
-    return this.getCalendarUnit('months').format[type];
+  wtime.getMonthNameFormatObj = function(localeObj, type) {
+    return wtime.getCalendarUnit(localeObj, 'months').format[type];
   };
   // month, abbreviated
-  worldTime.getNumericMonthNameAbbrev = function(monthNum) {
-    return this.getMonthNameFormatObj('abbreviated')[monthNum];  
+  wtime.getNumericMonthNameAbbrev = function(localeObj, monthNum) {
+    return wtime.getMonthNameFormatObj(localeObj, 'abbreviated')[monthNum];  
   };
   // month, wide
-  worldTime.getNumericMonthNameWide = function(monthNum) {
-    return this.getMonthNameFormatObj('wide')[monthNum];
+  wtime.getNumericMonthNameWide = function(localeObj, monthNum) {
+    return wtime.getMonthNameFormatObj(localeObj, 'wide')[monthNum];
   };  
 
   // days
-  worldTime.getDayNameFormatObj = function(type) {
-    return this.getCalendarUnit('days').format[type];
+  wtime.getDayNameFormatObj = function(localeObj, type) {
+    return wtime.getCalendarUnit(localeObj, 'days').format[type];
   };
   // day, abbreviated
-  worldTime.getStrDayNameAbbrev = function(dayNum) {
-    return this.getDayNameFormatObj('abbreviated')[dayNum];  
+  wtime.getStrDayNameAbbrev = function(localeObj, dayNum) {
+    return wtime.getDayNameFormatObj(localeObj, 'abbreviated')[dayNum];  
   };
   // day, wide
-  worldTime.getStrDayNameWide = function(dayNum) {
-    return this.getDayNameFormatObj('wide')[dayNum];
+  wtime.getStrDayNameWide = function(localeObj, dayNum) {
+    return wtime.getDayNameFormatObj(localeObj, 'wide')[dayNum];
   };  
 
   // get month 'name' from date
-  worldTime.getDateMonthNameAbbrev = function (d) {
-    var dateObj = this.isDateObj(d) ? d : new Date(),
+  wtime.getDateMonthNameAbbrev = function (localeObj, d) {
+    var dateObj = wtime.isDateObj(d) ? d : new Date(),
         monthNum = dateObj.getMonth() + 1;
-    return this.getNumericMonthNameAbbrev(monthNum);  
+    return wtime.getNumericMonthNameAbbrev(localeObj, monthNum);  
   };
-  worldTime.getDateMonthNameWide = function (d) {
-    var dateObj = this.isDateObj(d) ? d : new Date(),
+  wtime.getDateMonthNameWide = function (localeObj, d) {
+    var dateObj = wtime.isDateObj(d) ? d : new Date(),
         monthNum = dateObj.getMonth() + 1;
-    return this.getNumericMonthNameWide(monthNum);  
+    return wtime.getNumericMonthNameWide(localeObj, monthNum);  
   };
 
   // available formats are `full`, `long`, `medium` and `short`
   // if no format is specified, locale provided default is used
-  worldTime.getDateFormat = function (defaultFormat) {
-    var formats = this.getCalendarObj('gregorian').dateFormats;
+  wtime.getDateFormat = function (localeObj, defaultFormat) {
+    var formats = wtime.getCalendarObj(localeObj, 'gregorian').dateFormats;
+
     defaultFormat = defaultFormat || formats['default'];
     if (defaultFormat) {
-      return formats[defaultFormat].dateFormat.pattern;
+      return formats.length[defaultFormat];
     }
   };
 
   // available formats are `full`, `long`, `medium` and `short`
   // if no format is specified, locale provided default is used
-  worldTime.getTimeFormat = function (defaultFormat) {
-    var formats = this.getCalendarObj('gregorian').timeFormats;
+  wtime.getTimeFormat = function (localeObj, defaultFormat) {
+    var formats = wtime.getCalendarObj(localeObj, 'gregorian').timeFormats;
     defaultFormat = defaultFormat || formats['default'];
     if (defaultFormat) {
-      return formats[defaultFormat].timeFormat.pattern;
+      return formats.length[defaultFormat];
     }
   };
 
   // available formats are `full`, `long`, `medium` and `short`
   // if !format, locale provided default is used
-  worldTime.getFormattedDate = function (date, format) {
-    var that = this,
-        dateFormat = that.getDateFormat(format);
+  wtime.getFormattedDate = function (localeObj, date, format) {
+    var dateFormat = wtime.getDateFormat(localeObj, format);
 
-    return that.applyFormatDate(date, dateFormat);
+    return wtime.applyFormatDate(date, dateFormat);
   };
 
   // available formats are `full`, `long`, `medium` and `short`
   // if !format, locale provided default is used
-  worldTime.getFormattedTime = function (date, format) {
-    var that = this,
-        dateFormat = that.getTimeFormat(format);
+  wtime.getFormattedTime = function (localeObj, date, format) {
+    var dateFormat = wtime.getTimeFormat(localeObj, format);
 
-    return that.applyFormatDate(date, dateFormat);  
+    return wtime.applyFormatDate(date, dateFormat);  
   };
 
   // available formats are `full`, `long`, `medium` and `short`
   // if !format, locale provided default is used
-  worldTime.extractFormattedDate = function (date, format) {
-    var that = this,
-        dateFormat = that.getDateFormat(format);
+  wtime.extractFormattedDate = function (localeObj, date, format) {
+    var dateFormat = wtime.getDateFormat(localeObj, format);
 
-    return that.extractDateFormatted(date, dateFormat);
+    return wtime.extractDateFormatted(date, dateFormat);
   };
 
 
   // get abbreviated months array, useful for calendar applications
-  worldTime.getBaseMonthsArr = function (type) {
-    var m = this.getMonthNameFormatObj(type);
+  wtime.getBaseMonthsArr = function (localeObj, type) {
+    var m = wtime.getMonthNameFormatObj(localeObj, type);
     return [m['1'], m['2'], m['3'], m['4'],
             m['5'], m['6'], m['7'], m['8'],
             m['9'], m['10'], m['11'], m['12']];
   };
 
   // get abbreviated days array, useful for calendar applications  
-  worldTime.getBaseDaysArr = function (type) {
-    var d = this.getDayNameFormatObj(type);
+  wtime.getBaseDaysArr = function (localeObj, type) {
+    var d = wtime.getDayNameFormatObj(localeObj, type);
     return [d['sun'], d['mon'], d['tue'], d['wed'], 
             d['thu'], d['fri'], d['sat']];
   };
 
-
-  return (function () {
-    var fn = function (langObj, langId) {
-      var that = Object.create(worldTime);
-      worldTime.set(langObj, langId);
-      that.langCache[langId] = langObj;
-      that.localeObj = langObj;
-      return that;
-    };
-
-    fn.prototype = worldTime;
-
-    return function (langObj, langId) {
-      return new fn(langObj, langId);
-    };
-  }());
+  return wtime;
 
 }());
