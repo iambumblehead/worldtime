@@ -9,6 +9,7 @@ var es_CLObj = require('./locale/es_CL.json');
 ///////////////////// methods unique to world time (not found in simple time)
 ///////////////////////////////////////////////////////////////////////////////
 
+/*
 describe("WorldTime", function () {
   it("should return a world time object", function () {
     var worldTimeObj = WorldTime(en_USObj, 'en_US');
@@ -23,20 +24,18 @@ describe("WorldTime", function () {
   });
 
 });
-
+*/
 
 describe("WorldTime.getCalendarObj", function () {
   it("should return a calndar object of the correct type, gregorian", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getCalendarObj('gregorian');
+      var result = WorldTime.getCalendarObj(en_USObj, 'gregorian');
       var resultExpected = en_USObj.dates.calendars.gregorian;
 
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a calndar object of the correct type, coptic", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getCalendarObj('coptic');
+      var result = WorldTime.getCalendarObj(en_USObj, 'coptic');
       var resultExpected = en_USObj.dates.calendars.coptic;
 
       expect( result ).toBe( resultExpected );
@@ -47,22 +46,19 @@ describe("WorldTime.getCalendarObj", function () {
 describe("WorldTime.getMonthNameFormatObj", function () {
 
   it("should return a month names, abbreviated", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getMonthNameFormatObj('abbreviated');
+      var result = WorldTime.getMonthNameFormatObj(en_USObj, 'abbreviated');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.abbreviated;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a month names, wide", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getMonthNameFormatObj('wide');
+      var result = WorldTime.getMonthNameFormatObj(en_USObj, 'wide');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.wide;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a month names, narrow", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getMonthNameFormatObj('narrow');
+      var result = WorldTime.getMonthNameFormatObj(en_USObj, 'narrow');
       var resultExpected = en_USObj.dates.calendars.gregorian.months.format.narrow;
       expect( result ).toBe( resultExpected );
   });
@@ -72,16 +68,14 @@ describe("WorldTime.getMonthNameFormatObj", function () {
 
 describe("WorldTime.getNumericMonthNameAbbrev", function () {
   it("en_US instance w/ parameter `4` should return `Apr`", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericMonthNameAbbrev(4);
+      var result = WorldTime.getNumericMonthNameAbbrev(en_USObj, 4);
       var resultExpected = 'Apr';
 
       expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ parameter `4` should return `abr`", function () {
-      var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getNumericMonthNameAbbrev(4);
+      var result = WorldTime.getNumericMonthNameAbbrev(es_CLObj, 4);
       var resultExpected = 'abr';
 
       expect( result ).toBe( resultExpected );
@@ -91,16 +85,14 @@ describe("WorldTime.getNumericMonthNameAbbrev", function () {
 
 describe("WorldTime.getNumericMonthNameWide", function () {
   it("en_US instance w/ parameter `4` should return `April`", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getNumericMonthNameWide(4);
+      var result = WorldTime.getNumericMonthNameWide(en_USObj, 4);
       var resultExpected = 'April';
 
       expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ parameter `4` should return `abril`", function () {
-      var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getNumericMonthNameWide(4);
+      var result = WorldTime.getNumericMonthNameWide(es_CLObj, 4);
       var resultExpected = 'abril';
 
       expect( result ).toBe( resultExpected );
@@ -114,22 +106,19 @@ describe("WorldTime.getNumericMonthNameWide", function () {
 describe("WorldTime.getDayNameFormatObj", function () {
 
   it("should return a month names, abbreviated", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getDayNameFormatObj('abbreviated');
+      var result = WorldTime.getDayNameFormatObj(en_USObj, 'abbreviated');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.abbreviated;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a day names, wide", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getDayNameFormatObj('wide');
+      var result = WorldTime.getDayNameFormatObj(en_USObj, 'wide');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.wide;
       expect( result ).toBe( resultExpected );
   });
 
   it("should return a day names, narrow", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getDayNameFormatObj('narrow');
+      var result = WorldTime.getDayNameFormatObj(en_USObj, 'narrow');
       var resultExpected = en_USObj.dates.calendars.gregorian.days.format.narrow;
       expect( result ).toBe( resultExpected );
   });
@@ -139,16 +128,14 @@ describe("WorldTime.getDayNameFormatObj", function () {
 
 describe("WorldTime.getNumericDayNameAbbrev", function () {
   it("en_US instance w/ parameter `tue` should return `Tue`", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getStrDayNameAbbrev('tue');
+      var result = WorldTime.getStrDayNameAbbrev(en_USObj, 'tue');
       var resultExpected = 'Tue';
 
       expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ parameter `tue` should return `mar`", function () {
-      var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getStrDayNameAbbrev('tue');
+      var result = WorldTime.getStrDayNameAbbrev(es_CLObj, 'tue');
       var resultExpected = 'mar';
 
       expect( result ).toBe( resultExpected );
@@ -158,16 +145,14 @@ describe("WorldTime.getNumericDayNameAbbrev", function () {
 
 describe("WorldTime.getNumericDayNameWide", function () {
   it("en_US instance w/ parameter `tue` should return `Tuesday`", function () {
-      var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-      var result = worldTimeObj.getStrDayNameWide('tue');
+      var result = WorldTime.getStrDayNameWide(en_USObj, 'tue');
       var resultExpected = 'Tuesday';
 
       expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ parameter `tue` should return `martes`", function () {
-      var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-      var result = worldTimeObj.getStrDayNameWide('tue');
+      var result = WorldTime.getStrDayNameWide(es_CLObj, 'tue');
       var resultExpected = 'martes';
 
       expect( result ).toBe( resultExpected );
@@ -181,8 +166,7 @@ describe("WorldTime.getDateMonthNameAbbrev", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateMonthNameAbbrev(date);
+    var result = WorldTime.getDateMonthNameAbbrev(en_USObj, date);
     var resultExpected = 'Apr';
 
     expect( result ).toBe( resultExpected );
@@ -193,8 +177,7 @@ describe("WorldTime.getDateMonthNameAbbrev", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateMonthNameAbbrev(date);
+    var result = WorldTime.getDateMonthNameAbbrev(es_CLObj, date);
     var resultExpected = 'abr';
 
     expect( result ).toBe( resultExpected );
@@ -208,8 +191,7 @@ describe("WorldTime.getDateMonthNameWide", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateMonthNameWide(date);
+    var result = WorldTime.getDateMonthNameWide(en_USObj, date);
     var resultExpected = 'April';
 
     expect( result ).toBe( resultExpected );
@@ -220,8 +202,7 @@ describe("WorldTime.getDateMonthNameWide", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateMonthNameWide(date);
+    var result = WorldTime.getDateMonthNameWide(es_CLObj, date);
     var resultExpected = 'abril';
 
     expect( result ).toBe( resultExpected );
@@ -233,16 +214,14 @@ describe("WorldTime.getDateMonthNameWide", function () {
 describe("WorldTime.getDateFormat", function () {
 
   it("en_US instance w/ no params should return default date format, `MMM d, y`", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateFormat();
+    var result = WorldTime.getDateFormat(en_USObj);
     var resultExpected = 'MMM d, y';
 
     expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ no params should return default date format, `dd-MM-yyyy`", function () {
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateFormat();
+    var result = WorldTime.getDateFormat(es_CLObj);
     var resultExpected = 'dd-MM-yyyy';
 
     expect( result ).toBe( resultExpected );
@@ -250,32 +229,28 @@ describe("WorldTime.getDateFormat", function () {
 
 
   it("en_US instance w/ param `full` should return date format, `EEEE, MMMM d, y`", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateFormat('full');
+    var result = WorldTime.getDateFormat(en_USObj, 'full');
     var resultExpected = 'EEEE, MMMM d, y';
 
     expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ param `full` should return date format, `EEEE, d 'de' MMMM 'de' y`", function () {
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateFormat('full');
+    var result = WorldTime.getDateFormat(es_CLObj, 'full');
     var resultExpected = "EEEE, d 'de' MMMM 'de' y";
 
     expect( result ).toBe( resultExpected );
   });
 
   it("en_US instance w/ param `long` should return date format, `MMMM d, y`", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateFormat('long');
+    var result = WorldTime.getDateFormat(en_USObj, 'long');
     var resultExpected = 'MMMM d, y';
 
     expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ param `long` should return date format, `d 'de' MMMM 'de' y`", function () {
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateFormat('long');
+    var result = WorldTime.getDateFormat(es_CLObj, 'long');
     var resultExpected = "d 'de' MMMM 'de' y";
 
     expect( result ).toBe( resultExpected );
@@ -283,32 +258,28 @@ describe("WorldTime.getDateFormat", function () {
 
 
   it("en_US instance w/ param `medium` should return date format, `MMM d, y`", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateFormat('medium');
+    var result = WorldTime.getDateFormat(en_USObj, 'medium');
     var resultExpected = 'MMM d, y';
 
     expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ param `medium` should return date format, `dd-MM-yyyy`", function () {
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateFormat('medium');
+    var result = WorldTime.getDateFormat(es_CLObj, 'medium');
     var resultExpected = "dd-MM-yyyy";
 
     expect( result ).toBe( resultExpected );
   });
 
   it("en_US instance w/ param `short` should return date format, `M/d/yy`", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getDateFormat('short');
+    var result = WorldTime.getDateFormat(en_USObj, 'short');
     var resultExpected = 'M/d/yy';
 
     expect( result ).toBe( resultExpected );
   });
 
   it("es_CL instance w/ param `short` should return date format, `dd-MM-yy`", function () {
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getDateFormat('short');
+    var result = WorldTime.getDateFormat(es_CLObj, 'short');
     var resultExpected = "dd-MM-yy";
 
     expect( result ).toBe( resultExpected );
@@ -324,8 +295,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedDate(date);
+    var result = WorldTime.getFormattedDate(en_USObj, date);
     var resultExpected = 'Apr 5, 2013';
 
     expect( result ).toBe( resultExpected );
@@ -336,8 +306,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedDate(date);
+    var result = WorldTime.getFormattedDate(es_CLObj, date);
     var resultExpected = '05-04-2013';
 
     expect( result ).toBe( resultExpected );
@@ -348,8 +317,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedDate(date, 'full');
+    var result = WorldTime.getFormattedDate(en_USObj, date, 'full');
     var resultExpected = 'Friday, April 5, 2013';
 
     expect( result ).toBe( resultExpected );
@@ -360,8 +328,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedDate(date, 'full');
+    var result = WorldTime.getFormattedDate(es_CLObj, date, 'full');
     var resultExpected = "Friday, 5 'de' April 'de' 2013";
 
     expect( result ).toBe( resultExpected );
@@ -373,8 +340,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedDate(date, 'long');
+    var result = WorldTime.getFormattedDate(en_USObj, date, 'long');
     var resultExpected = 'April 5, 2013';
 
     expect( result ).toBe( resultExpected );
@@ -386,8 +352,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedDate(date, 'long');
+    var result = WorldTime.getFormattedDate(es_CLObj, date, 'long');
     var resultExpected = "5 'de' April 'de' 2013";
 
     expect( result ).toBe( resultExpected );
@@ -399,8 +364,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedDate(date, 'medium');
+    var result = WorldTime.getFormattedDate(en_USObj, date, 'medium');
     var resultExpected = 'Apr 5, 2013';
 
     expect( result ).toBe( resultExpected );
@@ -412,8 +376,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedDate(date, 'medium');
+    var result = WorldTime.getFormattedDate(es_CLObj, date, 'medium');
     var resultExpected = '05-04-2013';
 
     expect( result ).toBe( resultExpected );
@@ -425,8 +388,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedDate(date, 'short');
+    var result = WorldTime.getFormattedDate(en_USObj, date, 'short');
     var resultExpected = '4/5/13';
 
     expect( result ).toBe( resultExpected );
@@ -437,8 +399,7 @@ describe("WorldTime.getFormattedDate", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedDate(date, 'short');
+    var result = WorldTime.getFormattedDate(es_CLObj, date, 'short');
     var resultExpected = '05-04-13';
 
     expect( result ).toBe( resultExpected );
@@ -453,8 +414,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedTime(date);
+    var result = WorldTime.getFormattedTime(en_USObj, date);
     var resultExpected = '9:23:41 pm';
 
     expect( result ).toBe( resultExpected );
@@ -465,8 +425,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedTime(date);
+    var result = WorldTime.getFormattedTime(es_CLObj, date);
     var resultExpected = '21:23:41';
 
     expect( result ).toBe( resultExpected );
@@ -477,8 +436,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedTime(date, 'full');
+    var result = WorldTime.getFormattedTime(en_USObj, date, 'full');
     var resultExpected = '9:23:41 pm 0420';
 
     expect( result ).toBe( resultExpected );
@@ -489,8 +447,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedTime(date, 'full');
+    var result = WorldTime.getFormattedTime(es_CLObj, date, 'full');
     var resultExpected = '21:23:41 0420';
 
     expect( result ).toBe( resultExpected );
@@ -501,8 +458,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedTime(date, 'long');
+    var result = WorldTime.getFormattedTime(en_USObj, date, 'long');
     var resultExpected = '9:23:41 pm 420';
 
     expect( result ).toBe( resultExpected );
@@ -513,8 +469,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedTime(date, 'long');
+    var result = WorldTime.getFormattedTime(es_CLObj, date, 'long');
     var resultExpected = '21:23:41 420';
 
     expect( result ).toBe( resultExpected );
@@ -525,8 +480,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedTime(date, 'medium');
+    var result = WorldTime.getFormattedTime(en_USObj, date, 'medium');
     var resultExpected = '9:23:41 pm';
 
     expect( result ).toBe( resultExpected );
@@ -537,8 +491,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedTime(date, 'medium');
+    var result = WorldTime.getFormattedTime(es_CLObj, date, 'medium');
     var resultExpected = '21:23:41';
 
     expect( result ).toBe( resultExpected );
@@ -549,8 +502,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getFormattedTime(date, 'short');
+    var result = WorldTime.getFormattedTime(en_USObj, date, 'short');
     var resultExpected = '9:23 pm';
 
     expect( result ).toBe( resultExpected );
@@ -561,8 +513,7 @@ describe("WorldTime.getFormattedTime", function () {
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485);
 
-    var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-    var result = worldTimeObj.getFormattedTime(date, 'short');
+    var result = WorldTime.getFormattedTime(es_CLObj, date, 'short');
     var resultExpected = '21:23';
 
     expect( result ).toBe( resultExpected );
@@ -571,8 +522,7 @@ describe("WorldTime.getFormattedTime", function () {
 
 describe("WorldTime.getBaseMonthsArr", function () {
   it("en_US instance w/ param date `abbreviated` should return array of abbreviated month labels", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getBaseMonthsArr('abbreviated');  
+    var result = WorldTime.getBaseMonthsArr(en_USObj, 'abbreviated');  
     var resultExpected = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     expect( CompareObj.isSameMembersDefinedArrSame(result, resultExpected) ).toBe( true );
@@ -582,8 +532,7 @@ describe("WorldTime.getBaseMonthsArr", function () {
 
 describe("WorldTime.getBaseDaysArr", function () {
   it("en_US instance w/ param date `abbreviated` should return array of abbreviated day labels", function () {
-    var worldTimeObj = WorldTime(en_USObj, 'en_US');  
-    var result = worldTimeObj.getBaseDaysArr('abbreviated');  
+    var result = WorldTime.getBaseDaysArr(en_USObj, 'abbreviated');  
     var resultExpected = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     expect( CompareObj.isSameMembersDefinedArrSame(result, resultExpected) ).toBe( true );
@@ -599,134 +548,126 @@ describe("WorldTime.extractDateFormatted", function () {
   it("en_US instance should extract a correct date object from `full` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(en_USObj, 'en_US'),
         dateFormatted = 'Friday, April 5, 2013',
         resultExpected = date;
         // 'EEEE, MMMM d, y'
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'full');
+    var result = WorldTime.extractFormattedDate(en_USObj, dateFormatted, 'full');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("es_CL instance should extract a correct date object from `full` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(es_CLObj, 'es_CL'),
         dateFormatted = "Friday, 5 'de' April 'de' 2013",
         resultExpected = date;
         // "EEEE, d 'de' MMMM 'de' y"
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'full');
+    var result = WorldTime.extractFormattedDate(es_CLObj, dateFormatted, 'full');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("en_US instance should extract a correct date object from `long` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(en_USObj, 'en_US'),
         dateFormatted = 'April 5, 2013',
         resultExpected = date;
         // 'MMMM d, y'
         // 'April 5, 2013'
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'long');
+    var result = WorldTime.extractFormattedDate(en_USObj, dateFormatted, 'long');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("es_CL instance should extract a correct date object from `long` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(es_CLObj, 'es_CL'),
         dateFormatted = "5 'de' April 'de' 2013",
         resultExpected = date;
         // d 'de' MMMM 'de' y
         // 5 'de' April 'de' 2013
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'long');
+    var result = WorldTime.extractFormattedDate(es_CLObj, dateFormatted, 'long');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("en_US instance should extract a correct date object from `medium` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(en_USObj, 'en_US'),
         dateFormatted = 'Apr 5, 2013',
         resultExpected = date;
         // MMM d, y
         // Apr 5, 2013
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'medium');
+    var result = WorldTime.extractFormattedDate(en_USObj, dateFormatted, 'medium');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("es_CL instance should extract a correct date object from `medium` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(es_CLObj, 'es_CL'),
         dateFormatted = '05-04-2013',
         resultExpected = date;
         // dd-MM-yyyy
         // 05-04-2013
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'medium');
+    var result = WorldTime.extractFormattedDate(es_CLObj, dateFormatted, 'medium');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("en_US instance should extract a correct date object from `short` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(en_USObj, 'en_US'),
         dateFormatted = '4/5/13',
         resultExpected = date;
         // M/d/yy
         // 4/5/13
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'short');
+    var result = WorldTime.extractFormattedDate(en_USObj, dateFormatted, 'short');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
   it("es_CL instance should extract a correct date object from `short` formatted date", function () {  
     // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
     var date = new Date(1365222221485),
-        worldTimeObj = WorldTime(es_CLObj, 'es_CL'),
         dateFormatted = '05-04-13',
         resultExpected = date;
         // dd-MM-yy
         // 05-04-13
 
-    var result = worldTimeObj.extractFormattedDate(dateFormatted, 'short');
+    var result = WorldTime.extractFormattedDate(es_CLObj, dateFormatted, 'short');
 
     expect( CompareObj.isSameMembersDefinedArrSame(
-      worldTimeObj.getDateYMDNumArr(result), 
-      worldTimeObj.getDateYMDNumArr(resultExpected)) 
+      WorldTime.getDateYMDNumArr(result), 
+      WorldTime.getDateYMDNumArr(resultExpected)) 
     ).toBe( true );
   });
 
