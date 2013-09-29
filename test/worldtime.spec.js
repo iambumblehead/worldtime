@@ -42,7 +42,6 @@ describe("WorldTime.getCalendarObj", function () {
   });
 });
 
-
 describe("WorldTime.getMonthNameFormatObj", function () {
 
   it("should return a month names, abbreviated", function () {
@@ -64,7 +63,6 @@ describe("WorldTime.getMonthNameFormatObj", function () {
   });
 
 });
-
 
 describe("WorldTime.getNumericMonthNameAbbrev", function () {
   it("en_US instance w/ parameter `4` should return `Apr`", function () {
@@ -227,7 +225,6 @@ describe("WorldTime.getDateFormat", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
   it("en_US instance w/ param `full` should return date format, `EEEE, MMMM d, y`", function () {
     var result = WorldTime.getDateFormat(en_USObj, 'full');
     var resultExpected = 'EEEE, MMMM d, y';
@@ -285,7 +282,6 @@ describe("WorldTime.getDateFormat", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
 });
 
 
@@ -334,7 +330,6 @@ describe("WorldTime.getFormattedDate", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
   it("en_US instance w/ params date `Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)` and `long` should return `EEEE, April 5, 2013`", function () {
 
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
@@ -345,7 +340,6 @@ describe("WorldTime.getFormattedDate", function () {
 
     expect( result ).toBe( resultExpected );
   });
-
 
   it("es_CL instance w/ params date `Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)` and `long` should return `5 '5e' April '5e' 2013`", function () {
 
@@ -358,7 +352,6 @@ describe("WorldTime.getFormattedDate", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
   it("en_US instance w/ params date `Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)` and `medium` should return `EEEE, Apr 5, 2013`", function () {
 
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
@@ -370,7 +363,6 @@ describe("WorldTime.getFormattedDate", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
   it("es_CL instance w/ params date `Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)` and `medium` should return `05-04-2013`", function () {
 
     //Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
@@ -381,7 +373,6 @@ describe("WorldTime.getFormattedDate", function () {
 
     expect( result ).toBe( resultExpected );
   });
-
 
   it("en_US instance w/ params date `Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)` and `short` should return `4/5/13`", function () {
 
@@ -518,6 +509,7 @@ describe("WorldTime.getFormattedTime", function () {
 
     expect( result ).toBe( resultExpected );
   });
+
 });
 
 describe("WorldTime.getBaseMonthsArr", function () {
@@ -528,7 +520,6 @@ describe("WorldTime.getBaseMonthsArr", function () {
     expect( CompareObj.isSameMembersDefinedArrSame(result, resultExpected) ).toBe( true );
   });
 });
-
 
 describe("WorldTime.getBaseDaysArr", function () {
   it("en_US instance w/ param date `abbreviated` should return array of abbreviated day labels", function () {

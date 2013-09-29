@@ -58,18 +58,17 @@ worldtime may be downloaded directly or installed through `npm`.
  1. **Construct a WorldTime Object**
  
  construct a worldtime object and begin using it.
- 
- worldtime is constructed with an object as the first parameter, and a language identifier as the second parameter.
 
- > ```javascript
-   var WorldTime = require('../worldtime');
-   var es_CLObj = require('./locale/es_CL.json');    
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');
-   var d = worldTimeObj.extractFormattedDate('05-04-2013', 'medium');
-   console.log(d); // (date) Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var f = worldTimeObj.getFormattedTime(d, 'medium');
-   console.log(f); // 05-04-2013
-   ```
+ pass a unicode json object as first parameter to worldtime methods.
+
+```javascript
+var WorldTime = require('../worldtime');
+var es_CLObj = require('./locale/es_CL.json');    
+var d = WorldTime.extractFormattedDate(es_CLObj, '05-04-2013', 'medium');
+console.log(d); // (date) Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
+var f = WorldTime.getFormattedTime(es_CLObjd, 'medium');
+console.log(f); // 05-04-2013
+```
 
 
 ---------------------------------------------------------
@@ -77,7 +76,7 @@ worldtime may be downloaded directly or installed through `npm`.
 #### <a id="methods">METHODS:
 
 
- - **getCalendarObj ( _calendarType_ )**  
+ - **getCalendarObj ( _uObj_, _calendarType_ )**  
    returns a `calendar` object from the unicode file.
 
    the following calendars are defined by the unicode files and are valid _calendarTypes_:
@@ -98,7 +97,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "roc"   
 
 
- - **getCalendarUnit ( _unitType_ )**  
+ - **getCalendarUnit ( _uObj_, _unitType_ )**  
  
    returns a `calendar unit` object from the unicode file.
 
@@ -114,7 +113,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "fields"      
       
 
- - **getMonthNameFormatObj ( _monthType_ )**  
+ - **getMonthNameFormatObj ( _uObj_, _monthType_ )**  
  
    returns an object of month names for the given month type
 
@@ -127,8 +126,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "wide"  
       
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getMonthNameFormatObj('abbreviated');
+   var result = WorldTime.getMonthNameFormatObj(es_CLObj, 'abbreviated');
    console.log(result);
    // {
    //   "1": "ene",
@@ -146,29 +144,27 @@ worldtime may be downloaded directly or installed through `npm`.
    // }
    ```
 
- - **getNumericMonthNameAbbrev ( _monthNum_ )**  
+ - **getNumericMonthNameAbbrev ( _uObj_, _monthNum_ )**  
  
    returns a month name of the `abbreviated` month type for the given _monthNum_    
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getNumericMonthNameAbbrev('1');
+   var result = WorldTime.getNumericMonthNameAbbrev(es_CLObj, '1');
    console.log(result);
    // ene
    ```
 
- - **getNumericMonthNameWide ( _monthNum_ )**  
+ - **getNumericMonthNameWide ( _uObj_, _monthNum_ )**  
  
    returns a month name of the `wide` month type for the given _monthNum_
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getNumericMonthNameWide('1');
+   var result = WorldTime.getNumericMonthNameWide(es_CLObj, '1');
    console.log(result);
    // enero
    ```
 
- - **getDayNameFormatObj ( _dayType_ )**  
+ - **getDayNameFormatObj ( _uObj_, _dayType_ )**  
  
    returns an object of day names for the given day type
 
@@ -181,8 +177,7 @@ worldtime may be downloaded directly or installed through `npm`.
       "wide"  
       
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getDayNameFormatObj('abbreviated');
+   var result = WorldTime.getDayNameFormatObj(es_CLObj, 'abbreviated');
    console.log(result);
    // {
    //   "sun": "dom",
@@ -195,122 +190,112 @@ worldtime may be downloaded directly or installed through `npm`.
    // }
    ```
 
- - **getStrDayNameAbbrev ( _dayStr_ )**  
+ - **getStrDayNameAbbrev ( _uObj_, _dayStr_ )**  
  
    returns a day name of the `abbreviated` day type for the given _dayStr_  
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getStrDayNameAbbrev('mon');
+   var result = WorldTime.getStrDayNameAbbrev(es_CLObj, 'mon');
    console.log(result);
    // lun
    ```
 
- - **getStrDayNameWide ( _dayStr_ )**  
+ - **getStrDayNameWide ( _uObj_, _dayStr_ )**  
  
    returns a day name of the `wide` day type for the given _dayStr_     
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getStrDayNameWide('mon');
+   var result = WorldTime.getStrDayNameWide(es_CLObj, 'mon');
    console.log(result);
    // lunes
    ```
 
- - **getDateMonthNameAbbrev ( _dayStr_ )**  
+ - **getDateMonthNameAbbrev ( _uObj_, _dayStr_ )**  
  
    returns a day name of the `wide` day type for the given _dayStr_     
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
    var date = new Date(1365222221485);  
-   var result = worldTimeObj.getDateMonthNameAbbrev(date);
+   var result = WorldTime.getDateMonthNameAbbrev(es_CLObj, date);
    console.log(result);
    // abr
    ```   
    
- - **getDateMonthNameWide ( _dayStr_ )**  
+ - **getDateMonthNameWide ( _uObj_, _dayStr_ )**  
  
    returns a day name of the `wide` day type for the given _dayStr_     
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
    var date = new Date(1365222221485);  
-   var result = worldTimeObj.getDateMonthNameWide(date);
+   var result = WorldTime.getDateMonthNameWide(es_CLObj, date);
    console.log(result);
    // abril
    ```   
 
- - **getDateFormat ( _formatType_ )**  
+ - **getDateFormat ( _uObj_, _formatType_ )**  
  
    returns a date format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getDateFormat('short');
+   var result = WorldTime.getDateFormat(es_CLObj, 'short');
    console.log(result);
    // dd-MM-yy
    ```    
 
- - **getTimeFormat ( _formatType_ )**  
+ - **getTimeFormat ( _uObj_, _formatType_ )**  
  
    returns a time format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getTimeFormat('short');
+   var result = WorldTime.getTimeFormat(es_CLObj, 'short');
    console.log(result);
    // H:mm
    ```    
 
- - **getFormattedDate ( _dateObj_ , _formatType_ )**  
+ - **getFormattedDate ( _uObj_, _dateObj_ , _formatType_ )**  
  
    returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
    var date = new Date(1365222221485);     
-   var result = worldTimeObj.getFormattedDate(date, 'short');
+   var result = WorldTime.getFormattedDate(es_CLObj, date, 'short');
    console.log(result);
    // 05-04-13
    ```    
 
- - **getFormattedTime ( _dateObj_ , _formatType_ )**  
+ - **getFormattedTime ( _uObj_, _dateObj_ , _formatType_ )**  
  
    returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
    var date = new Date(1365222221485);     
-   var result = worldTimeObj.getFormattedTime(date, 'short');
+   var result = WorldTime.getFormattedTime(es_CLObj, date, 'short');
    console.log(result);
    // 21:23
    ```    
 
- - **extractFormattedDate ( _dateStr_ , _formatType_ )**  
+ - **extractFormattedDate ( _uObj_, _dateStr_ , _formatType_ )**  
  
    returns a date of the given formattted dateStr and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
 
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
    // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
    var date = '05-04-13';
-   var result = worldTimeObj.extractFormattedDate(date, 'short');
+   var result = WorldTime.extractFormattedDate(es_CLObj, date, 'short');
    console.log(result);
    // Fri Apr 05 13 23:13:55 GMT-0700 (PDT)
    ```    
    
- - **getBaseMonthsArr ( _formatType_ )**  
+ - **getBaseMonthsArr ( _uObj_, _formatType_ )**  
  
    returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
    
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getBaseMonthsArr('abbreviated');
+   var result = WorldTime.getBaseMonthsArr(es_CLObj, 'abbreviated');
    console.log(result);
    // [
    //   'feb',
@@ -327,13 +312,12 @@ worldtime may be downloaded directly or installed through `npm`.
    // ]
    ```       
    
- - **getBaseDaysArr ( _formatType_ )**  
+ - **getBaseDaysArr ( _uObj_, _formatType_ )**  
  
    returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
    
    ```javascript
-   var worldTimeObj = WorldTime(es_CLObj, 'es_CL');  
-   var result = worldTimeObj.getBaseDaysArr('abbreviated');
+   var result = WorldTime.getBaseDaysArr(es_CLObj, 'abbreviated');
    console.log(result);
    // [
    //   'dom',
@@ -350,7 +334,7 @@ worldtime may be downloaded directly or installed through `npm`.
 
 #### <a id="methods">Contributions:
 
-Contributions are welcome. If you've found an issue and you'd like to send me an email about it feel free to do that.
+Contributions are welcome.
 
 I initially wrote worldtime while I was building an international software application on a job. I have changed jobs and I'm no longer testing or developing this script for a production environment. If you find issues please report them or send a fix.
 

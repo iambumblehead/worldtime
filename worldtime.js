@@ -1,5 +1,5 @@
 // Filename: worldtime.js  
-// Timestamp: 2013.09.26-05:44:42 (last modified)  
+// Timestamp: 2013.09.28-16:48:15 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 // Requires: simpletime.js
 
@@ -93,7 +93,7 @@ var worldtime =
 
     defaultFormat = defaultFormat || formats['default'];
     if (defaultFormat) {
-      return formats.length[defaultFormat];
+      return formats[defaultFormat].dateFormat.pattern;
     }
   };
 
@@ -101,9 +101,10 @@ var worldtime =
   // if no format is specified, locale provided default is used
   wtime.getTimeFormat = function (localeObj, defaultFormat) {
     var formats = wtime.getCalendarObj(localeObj, 'gregorian').timeFormats;
+
     defaultFormat = defaultFormat || formats['default'];
     if (defaultFormat) {
-      return formats.length[defaultFormat];
+      return formats[defaultFormat].timeFormat.pattern;
     }
   };
 
