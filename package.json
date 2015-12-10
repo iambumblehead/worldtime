@@ -1,6 +1,7 @@
 {
   "name": "worldtime",
-  "version": "0.1.4",
+  "main": "worldtime",
+  "version": "0.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/iambumblehead/worldtime.git"

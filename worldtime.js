@@ -5,8 +5,7 @@
 
 var simpletime = require('simpletime');
 
-var worldtime = 
-  ((typeof module === 'object') ? module : {}).exports = (function () {
+var worldtime = module.exports = (function () {
 
   var wtime = Object.create(simpletime);
 
