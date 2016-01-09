@@ -4,7 +4,7 @@ worldtime
 
 ### Overview:
 
-worldtime uses [official Unicode ldml-JSON files][2] to format and parse international times. The unicode files are found in [json-locale][3].
+worldtime uses [official Unicode ldml-JSON files][2] to format and parse international times (files are found in [json-locale][3]).
 
 worldtime extends [simpletime][4] to provide all simpletime methods. Use it to format and unformat international time using unicode [forms][5].
 
