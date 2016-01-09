@@ -1,22 +1,34 @@
 worldtime
 =========
-**(c)[Bumblehead][0], 2013** [MIT-license](#license)  
+**(c)[Bumblehead][0], 2013,2014,2015,2016** [MIT-license](#license)
 
 ### Overview:
 
-worldtime provides methods for manipulating international dates, converting dates to and from unicode format.
+worldtime uses [official Unicode ldml-JSON files][2] to format and parse international times. The unicode files are found in [json-locale][3].
 
-worldtime uses the [official Unicode ldml-JSON files][2] for formatting and parsing international dates and times. Use [json-locale][3] to get these files and to optimise them.
+worldtime extends [simpletime][4] to provide all simpletime methods. Use it to format and unformat international time using unicode [forms][5].
 
-worldtime extends [simpletime][4]. no libraries are required. just simpletime, worldtime and unicode JSON files.
+```javascript
+var worldtime = require('worldtime'),
+    uobj = require('es_CL.json');
 
-because worldtime extends [simpletime][4], constructed worldtime objects will have the same methods and properties that are defined on simpletime objects. 
+worldtime.getFormattedDate(uobj, new Date(), 'medium');
+// "09-01-2016"
 
-what's good about this script:
+worldtime.extractFormattedDate(uobj, '09-01-2016', 'medium');
+// Sat Jan 09 2016 01:01:12 GMT-0800 (PST)
 
-  - format and unformat international time using unicode [forms][5]
-  - create and use `YMDArr` objects to simplify time manipulation
-  - it may be used in a browser or node.js ecmascipt environment
+worldtime.getDateMonthNameWide(uobj, new Date());
+// "enero"
+
+worldtime.getNumericMonthNameWide(uobj, '2');
+// "febrero"
+
+worldtime.getStrDayNameAbbrev(uobj, 'thu');
+// "jue"
+```
+
+The below method list is abbreviated. See worldtime and simpletime source files for the full list. 
 
 [0]: http://www.bumblehead.com                            "bumblehead"
 [1]: http://github.com/iambumblehead/worldTime             "worldTime"
@@ -24,324 +36,244 @@ what's good about this script:
 [3]: https://github.com/iambumblehead/json-locale        "json-locale"
 [4]: https://github.com/iambumblehead/simpletime         "simple-time"
 [5]: http://www.unicode.org/repos/cldr-aux/json/22.1/   "unicode JSON"
+[7]: https://raw.githubusercontent.com/iambumblehead/es5classic/master/es5classic_120x120.png
 
 ---------------------------------------------------------
-#### <a id="install"></a>Install:
+#### <a id="methods"></a>methods
 
-worldtime may be downloaded directly or installed through `npm`.
+ * **getCalendarObj ( _uObj_, _calendarType_ )**
 
- * **npm**   
+   returns a `calendar` object from the unicode object. valid _calendarTypes_: "buddhist", "chinese", "coptic", "dangi", "ethiopic", "ethiopicAmeteAlem", "gregorian", "hebrew", "indian", "islamic", "islamicCivil", "japanese", "persian", "roc".
 
- ```bash
- $ npm install worldtime
- ```
+   ex,
 
- * **Direct Download**
- 
- ```bash  
- $ git clone https://github.com/iambumblehead/worldtime.git
- ```
-
----------------------------------------------------------
-#### <a id="test"></a>Test:
-
- to run tests, use `npm test` from a shell.
-
- ```bash
- $ npm test
- ```
-
----------------------------------------------------------
-
-#### <a id="get-started">GET STARTED:
-
- 1. **Construct a WorldTime Object**
- 
- construct a worldtime object and begin using it.
-
- pass a unicode json object as first parameter to worldtime methods.
-
-```javascript
-var WorldTime = require('../worldtime');
-var es_CLObj = require('./locale/es_CL.json');    
-var d = WorldTime.extractFormattedDate(es_CLObj, '05-04-2013', 'medium');
-console.log(d); // (date) Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-var f = WorldTime.getFormattedTime(es_CLObjd, 'medium');
-console.log(f); // 05-04-2013
-```
-
-
----------------------------------------------------------
-
-#### <a id="methods">METHODS:
-
-
- - **getCalendarObj ( _uObj_, _calendarType_ )**  
-   returns a `calendar` object from the unicode file.
-
-   the following calendars are defined by the unicode files and are valid _calendarTypes_:
-       
-      "buddhist",   
-      "chinese",   
-      "coptic",   
-      "dangi",  
-      "ethiopic",   
-      "ethiopicAmeteAlem",  
-      "gregorian",  
-      "hebrew",  
-      "indian",  
-      "islamic",  
-      "islamicCivil",   
-      "japanese",  
-      "persian",  
-      "roc"   
-
-
- - **getCalendarUnit ( _uObj_, _unitType_ )**  
- 
-   returns a `calendar unit` object from the unicode file.
-
-   the following units are defined by the unicode files and are valid _unitTypes_:
-
-      "months",  
-      "days",  
-      "quarters",  
-      "eras",  
-      "dateFormats",  
-      "timeFormats",  
-      "dateTimeFormats",  
-      "fields"      
-      
-
- - **getMonthNameFormatObj ( _uObj_, _monthType_ )**  
- 
-   returns an object of month names for the given month type
-
-   by default, months are provided by the `gregorian` calendar object
- 
-   the following month types are defined by the unicode files and are valid _monthTypes_:
-   
-      "abbreviated",  
-      "narrow",  
-      "wide"  
-      
    ```javascript
-   var result = WorldTime.getMonthNameFormatObj(es_CLObj, 'abbreviated');
-   console.log(result);
-   // {
-   //   "1": "ene",
-   //   "2": "feb",
-   //   "3": "mar",
-   //   "4": "abr",
-   //   "5": "may",
-   //   "6": "jun",
-   //   "7": "jul",
-   //   "8": "ago",
-   //   "9": "sep",
-   //   "10": "oct",
-   //   "11": "nov",
-   //   "12": "dic"
-   // }
+   worldtime.getCalendarObj(uobj, 'gregorian').months.format.wide
+   //{ '1': 'enero',
+   //  '2': 'febrero',
+   //  '3': 'marzo',
+   //  '4': 'abril',
+   //  '5': 'mayo',
+   //  '6': 'junio',
+   //  '7': 'julio',
+   //  '8': 'agosto',
+   //  '9': 'septiembre',
+   //  '10': 'octubre',
+   //  '11': 'noviembre',
+   //  '12': 'diciembre' }
    ```
 
- - **getNumericMonthNameAbbrev ( _uObj_, _monthNum_ )**  
+ * **getCalendarUnit ( _uObj_, _unitType_ )**
  
-   returns a month name of the `abbreviated` month type for the given _monthNum_    
+   returns a `calendar unit` object from the unicode object. valid _unitTypes_: "months", "days", "quarters", "eras", "dateFormats", "timeFormats", "dateTimeFormats", "fields".
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getNumericMonthNameAbbrev(es_CLObj, '1');
-   console.log(result);
+   worldtime.getCalendarUnit(uobj, 'dateFormats').medium.dateFormat.pattern
+   // 'dd-MM-yyyy'
+   ```
+
+ * **getMonthNameFormatObj ( _uObj_, _monthType_ )**
+ 
+   returns an object of month names for the given month type. months are provided by the `gregorian` calendar object. valid _monthTypes_: "abbreviated", "narrow", "wide".
+
+   ex,
+
+   ```javascript
+   worldtime.getMonthNameFormatObj(uobj, 'abbreviated');
+   //{ '1': 'ene',
+   //  '2': 'feb',
+   //  '3': 'mar',
+   //  '4': 'abr',
+   //  '5': 'may',
+   //  '6': 'jun',
+   //  '7': 'jul',
+   //  '8': 'ago',
+   //  '9': 'sep',
+   //  '10': 'oct',
+   //  '11': 'nov',
+   //  '12': 'dic' }
+   ```
+
+ * **getBaseMonthsArr ( _uObj_, _formatType_ )**
+ 
+   returns an array of months for the given format type. valid _formatType_: "abbreviated", "narrow", "wide".
+
+   ex,
+
+   ```javascript
+   worldtime.getBaseMonthsArr(es_CLObj, 'abbreviated');
+   //[ 'feb',
+   //  'mar',
+   //  'abr',
+   //  'may',
+   //  'jun',
+   //  'jul',
+   //  'ago',
+   //  'sep',
+   //  'oct',
+   //  'nov',
+   //  'dic' ]
+   ```
+
+ * **getNumericMonthNameAbbrev ( _uObj_, _monthNum_ )**
+ 
+   returns a month name of the `abbreviated` month type for the given _monthNum_.
+
+   ex,
+
+   ```javascript
+   worldtime.getNumericMonthNameAbbrev(uobj, '1');
    // ene
    ```
 
- - **getNumericMonthNameWide ( _uObj_, _monthNum_ )**  
+ * **getNumericMonthNameWide ( _uObj_, _monthNum_ )**
  
-   returns a month name of the `wide` month type for the given _monthNum_
+   returns a month name of the `wide` month type for the given _monthNum_.
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getNumericMonthNameWide(es_CLObj, '1');
-   console.log(result);
+   worldtime.getNumericMonthNameWide(uobj, '1');
    // enero
    ```
 
- - **getDayNameFormatObj ( _uObj_, _dayType_ )**  
+ * **getDayNameFormatObj ( _uObj_, _dayType_ )**
  
-   returns an object of day names for the given day type
+   returns an object of day names for the given day type. months are provided by the `gregorian` calendar object. valid _dayType_: "abbreviated", "narrow", "wide".
 
-   by default, months are provided by the `gregorian` calendar object
- 
-   the following day types are defined by the unicode files:
-   
-      "abbreviated",  
-      "narrow",  
-      "wide"  
-      
+   ex,
+
    ```javascript
-   var result = WorldTime.getDayNameFormatObj(es_CLObj, 'abbreviated');
-   console.log(result);
-   // {
-   //   "sun": "dom",
-   //   "mon": "lun",
-   //   "tue": "mar",
-   //   "wed": "mié",
-   //   "thu": "jue",
-   //   "fri": "vie",
-   //   "sat": "sáb"
-   // }
+   var result = worldtime.getDayNameFormatObj(uobj, 'abbreviated');
+   //{ 'sun': 'dom',
+   //  'mon': 'lun',
+   //  'tue': 'mar',
+   //  'wed': 'mié',
+   //  'thu': 'jue',
+   //  'fri': 'vie',
+   //  'sat': 'sáb' }
+   ```
+   
+ * **getBaseDaysArr ( _uobj_, _formatType_ )**
+ 
+   returns an array of days for the given format type. valid _formatType_: "abbreviated", "narrow", "wide".
+
+   ex,
+
+   ```javascript
+   worldtime.getBaseDaysArr(uobj, 'abbreviated');
+   //[ 'dom',
+   //  'lun',
+   //  'mar',
+   //  'mié',
+   //  'jue',
+   //  'vie',
+   //  'sáb' ]
    ```
 
- - **getStrDayNameAbbrev ( _uObj_, _dayStr_ )**  
+ * **getStrDayNameAbbrev ( _uObj_, _dayStr_ )**
  
-   returns a day name of the `abbreviated` day type for the given _dayStr_  
+   returns a day name of the `abbreviated` day type for the given _dayStr_. valid _dayStr_: "sun", "mon", "tue", "wed", "thu", "fri", "sat".
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getStrDayNameAbbrev(es_CLObj, 'mon');
-   console.log(result);
+   worldtime.getStrDayNameAbbrev(uobj, 'mon');
    // lun
    ```
 
- - **getStrDayNameWide ( _uObj_, _dayStr_ )**  
+ * **getStrDayNameWide ( _uObj_, _dayStr_ )**
  
-   returns a day name of the `wide` day type for the given _dayStr_     
+   returns a day name of the `wide` day type for the given _dayStr_.
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getStrDayNameWide(es_CLObj, 'mon');
-   console.log(result);
+   worldtime.getStrDayNameWide(uobj, 'mon');
    // lunes
    ```
 
- - **getDateMonthNameAbbrev ( _uObj_, _dayStr_ )**  
+ * **getDateMonthNameAbbrev ( _uObj_, _date_ )**
  
-   returns a day name of the `wide` day type for the given _dayStr_     
+   returns a "abbrev" day name for the given _date_.
+
+   ex,
 
    ```javascript
-   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var date = new Date(1365222221485);  
-   var result = WorldTime.getDateMonthNameAbbrev(es_CLObj, date);
-   console.log(result);
+   worldtime.getDateMonthNameAbbrev(uobj, date);
    // abr
-   ```   
+   ```
    
- - **getDateMonthNameWide ( _uObj_, _dayStr_ )**  
+ * **getDateMonthNameWide ( _uObj_, _date_ )**
  
-   returns a day name of the `wide` day type for the given _dayStr_     
+   returns a "wide" day name for the given _date_.
+
+   ex,
 
    ```javascript
-   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var date = new Date(1365222221485);  
-   var result = WorldTime.getDateMonthNameWide(es_CLObj, date);
-   console.log(result);
+   worldtime.getDateMonthNameWide(uobj, date);
    // abril
-   ```   
+   ```
 
- - **getDateFormat ( _uObj_, _formatType_ )**  
+ * **getDateFormat ( _uObj_, _formatType_ )**
  
-   returns a date format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+   returns a date format of the given formatType. valid formatType: "full", "long", "medium", "short". If no formatType given, the default format of the locale is returned.
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getDateFormat(es_CLObj, 'short');
-   console.log(result);
+   worldtime.getDateFormat(uobj, 'short');
    // dd-MM-yy
-   ```    
+   ```
 
- - **getTimeFormat ( _uObj_, _formatType_ )**  
- 
-   returns a time format of the given formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+ * **getTimeFormat ( _uObj_, _formatType_ )**
+
+   returns a time format of the given formatType. valid formatType: "full", "long", "medium", "short". If no formatType given, the default format of the locale is returned.
+
+   ex,
 
    ```javascript
-   var result = WorldTime.getTimeFormat(es_CLObj, 'short');
-   console.log(result);
+   worldtime.getTimeFormat(uobj, 'short');
    // H:mm
-   ```    
+   ```
 
- - **getFormattedDate ( _uObj_, _dateObj_ , _formatType_ )**  
+ * **getFormattedDate ( _uObj_, _dateObj_ , _formatType_ )**
  
-   returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+   returns the given date in the given and formatType. valid _formatType_: "full", "long", "medium", "short". If no formatType is given, the default format of the locale is returned.
+
+   ex,
 
    ```javascript
-   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var date = new Date(1365222221485);     
-   var result = WorldTime.getFormattedDate(es_CLObj, date, 'short');
-   console.log(result);
+   worldtime.getFormattedDate(uobj, new Date(), 'short');
    // 05-04-13
-   ```    
+   ```
 
- - **getFormattedTime ( _uObj_, _dateObj_ , _formatType_ )**  
- 
-   returns a formatted date of the given dateObj and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+ * **getFormattedTime ( _uObj_, _dateObj_ , _formatType_ )**
+
+   returns the given time in the given and formatType. valid _formatType_: "full", "long", "medium", "short". If no formatType is given, the default format of the locale is returned.
+
+   ex,
 
    ```javascript
-   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var date = new Date(1365222221485);     
-   var result = WorldTime.getFormattedTime(es_CLObj, date, 'short');
-   console.log(result);
+   worldtime.getFormattedTime(uobj, new Date(), 'short');
    // 21:23
-   ```    
+   ```
 
- - **extractFormattedDate ( _uObj_, _dateStr_ , _formatType_ )**  
+ * **extractFormattedDate ( _uObj_, _dateStr_ , _formatType_ )**
  
-   returns a date of the given formattted dateStr and formatType ( _full_, _long_, _medium_, _short_ ). If no formatType is given, the default format of the locale is returned.
+   returns a date from a given dateStr following the given formatType. valid _formatType_: "full", "long", "medium", "short". If no formatType is given, the default format of the locale is returned.
+
+   ex,
 
    ```javascript
-   // Fri Apr 05 2013 21:23:41 GMT-0700 (PDT)
-   var date = '05-04-13';
-   var result = WorldTime.extractFormattedDate(es_CLObj, date, 'short');
-   console.log(result);
+   worldtime.extractFormattedDate(uobj, '05-04-13', 'short');
    // Fri Apr 05 13 23:13:55 GMT-0700 (PDT)
-   ```    
+   ```
    
- - **getBaseMonthsArr ( _uObj_, _formatType_ )**  
- 
-   returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
    
-   ```javascript
-   var result = WorldTime.getBaseMonthsArr(es_CLObj, 'abbreviated');
-   console.log(result);
-   // [
-   //   'feb',
-   //   'mar',
-   //   'abr',
-   //   'may',
-   //   'jun',
-   //   'jul',
-   //   'ago',
-   //   'sep',
-   //   'oct',
-   //   'nov',
-   //   'dic'
-   // ]
-   ```       
-   
- - **getBaseDaysArr ( _uObj_, _formatType_ )**  
- 
-   returns an array of months for the given formatType ( _abbreviated_, _narrow_, _wide_ ).
-   
-   ```javascript
-   var result = WorldTime.getBaseDaysArr(es_CLObj, 'abbreviated');
-   console.log(result);
-   // [
-   //   'dom',
-   //   'lun',
-   //   'mar',
-   //   'mié',
-   //   'jue',
-   //   'vie',
-   //   'sáb'
-   // ]
-   ```          
-
----------------------------------------------------------
-
-#### <a id="methods">Contributions:
-
-Contributions are welcome.
-
-I initially wrote worldtime while I was building an international software application on a job. I have changed jobs and I'm no longer testing or developing this script for a production environment. If you find issues please report them or send a fix.
-
-
----------------------------------------------------------
-
-#### <a id="license">License:
+![scrounge](https://github.com/iambumblehead/scroungejs/raw/master/img/hand.png)[![es5 classic][7]][7]
 
 (The MIT License)
 

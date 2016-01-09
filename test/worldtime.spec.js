@@ -1,3 +1,6 @@
+// Filename: worldtime.spec.js  
+// Timestamp: 2016.01.09-01:20:25 (last modified)
+// Author(s): bumblehead <chris@bumblehead.com>  
 var WorldTime = require('../worldtime');
 var CompareObj = require('compareobj');
 
